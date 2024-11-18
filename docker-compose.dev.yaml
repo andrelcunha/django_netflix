@@ -1,0 +1,27 @@
+services:
+
+  django:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8000:8000
+    environment:
+      - DEBUG=True
+      - DATABASE_URL=postgres://postgres:root@postgres:5432/django_netflix
+    volumes:
+      - .:/home/myuser/app
+    
+  postgres:
+    image: postgres:15.8-alpine3.20
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - dj_netflix_pgdata:/var/lib/postgresql/data
+      - ./prepare-db.sql:/docker-entrypoint-initdb.d/prepare-db.sql
+  
+
+volumes:
+  dj_netflix_pgdata:
