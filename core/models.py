@@ -28,7 +28,7 @@ class Movie(models.Model):
     image_card = models.ImageField(upload_to='movie_images/')
     image_cover = models.ImageField(upload_to='movie_images/')
     video = models.FileField(upload_to='movie_videos/')
-    movie_viiews = models.PositiveIntegerField(default=0)
+    movie_views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
