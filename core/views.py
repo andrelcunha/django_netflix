@@ -7,7 +7,11 @@ from .models import Movie
 # Create your views here.
 def index(request):
     genre_choices = Movie.GENRE_CHOICES
-    context = {'genre_choices': genre_choices}
+    movies = Movie.objects.all()
+    context = {
+        'genre_choices': genre_choices,
+        'movies': movies
+        }
     return render(request, 'index.html', context)
 
 def login(request):

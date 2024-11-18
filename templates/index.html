@@ -59,16 +59,13 @@
     </section>
     <section class="py-10 px-5">
         
-        <h2 class="text-xl mb-5">My List</h2>
+        <h2 class="text-xl mb-5">Popular on Netflix</h2>
         <div class="flex space-x-5 overflow-x-auto">
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://image.tmdb.org/t/p/original/xjsx6rGEgHl2tUqkimo6Bz2KzVo.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://m.media-amazon.com/images/I/91Rc81ucqTL._AC_UF1000,1000_QL80_.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://image.tmdb.org/t/p/original/zslnq0DylmKbx0bwtvzhXjjGuEg.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://tm.ibxk.com.br/ms/images/highlights/000/055/100/2183.jpg?ims=256x380'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://imgs.search.brave.com/QBeIC7RTQ6cNk5CeYqtmD8Yh5lo5YSK0cXY5N6PUU0g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzgxTHFwd2xoaWZM/LmpwZw'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://imgs.search.brave.com/6JsieARlU8jz17QK8R63WONNqCoSm9Niamn7zGsHWpQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1QlpEaGxNbUkz/TWprdE5EVXhaaTAw/WWpKbExXRTFNVFl0/WlRFMU1tTTROV05r/WXpGbFhrRXlYa0Zx/Y0djQC5qcGc'); background-size: cover; background-position: center;"></div>
-            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://imgs.search.brave.com/zwlwDu3wXg7PCBfxXI8yUYkuV17xckBoYhLwprfVZQk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFXRVF2NE1VMkwu/anBn'); background-size: cover; background-position: center;"></div>
+            {% for movie in movies%}
+                <div class="w-40 h-64 flex-shrink-0 film-card" 
+                onclick="showModal()" 
+                style="background-image: url('{{movie.image_card.url}}'); background-size: cover; background-position: center;"></div>
+            {% endfor %}
         </div>
 
     </section>
