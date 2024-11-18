@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css' %}" />
+
+</head>
+
+<body class="text-white" style="background-color: #141414;">
+    <header class="p-5 flex justify-between items-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" height="30" alt="Netflix Logo" width="110">
+        <nav class="flex space-x-5">
+            <span>Home</span>
+            <span>Series</span>
+            <span>Films</span>
+            <span>New & Popular</span>
+        </nav>
+        <div class="flex space-x-5 items-center">
+            <input type="search" name="search_term" placeholder="Search" class="bg-gray-700 p-2 rounded">
+            <button class="bg-red-600 text-white p-2 rounded hover:bg-red-500">Search</button>
+            <div class="relative">
+                <a href="#" class="block p-2">Logout</a>
+            </div>
+        </div>
+    </header>
+    <section class="relative py-20 px-10" style="background-image: url('https://bloximages.newyork1.vip.townnews.com/newsrecord.org/content/tncms/assets/v3/editorial/8/1e/81ea500c-45ac-11ee-a11e-a7402910a7e7/64ecaae69243a.image.jpg'); background-size: cover; background-position: center;">
+        <div>
+            <h1 class="text-5xl mb-5">Talk to Me</h1>
+            <p class="mb-5">One of the best movies on the platform.</p>
+            <div class="flex space-x-4">
+                <a href="movie.html">
+                    <button class="bg-red-600 text-white p-2 px-5 rounded hover:bg-red-500">Play</button>
+                </a>
+                <button class="border border-white text-white p-2 px-5 rounded hover:bg-gray-700">More Info</button>
+            </div>
+        </div>
+    </section>
+    <section class="py-10 px-5">
+        
+        <h2 class="text-xl mb-5">My List</h2>
+        <div class="flex space-x-5 overflow-x-auto">
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://image.tmdb.org/t/p/original/xjsx6rGEgHl2tUqkimo6Bz2KzVo.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://m.media-amazon.com/images/I/91Rc81ucqTL._AC_UF1000,1000_QL80_.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://image.tmdb.org/t/p/original/zslnq0DylmKbx0bwtvzhXjjGuEg.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://tm.ibxk.com.br/ms/images/highlights/000/055/100/2183.jpg?ims=256x380'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://imgs.search.brave.com/QBeIC7RTQ6cNk5CeYqtmD8Yh5lo5YSK0cXY5N6PUU0g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzgxTHFwd2xoaWZM/LmpwZw'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://imgs.search.brave.com/6JsieARlU8jz17QK8R63WONNqCoSm9Niamn7zGsHWpQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1QlpEaGxNbUkz/TWprdE5EVXhaaTAw/WWpKbExXRTFNVFl0/WlRFMU1tTTROV05r/WXpGbFhrRXlYa0Zx/Y0djQC5qcGc'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0 film-card" onclick="showModal()" style="background-image: url('https://imgs.search.brave.com/zwlwDu3wXg7PCBfxXI8yUYkuV17xckBoYhLwprfVZQk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFXRVF2NE1VMkwu/anBn'); background-size: cover; background-position: center;"></div>
+        </div>
+
+    </section>
+
+    <section class="py-10 px-5">
+        
+        <h2 class="text-xl mb-5">Popular on Netflix</h2>
+        <div class="flex space-x-5 overflow-x-auto">
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            <div class="w-40 h-64 flex-shrink-0" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+    </section>
+    
+    <!-- Modal -->
+    <div class="modal" id="movieModal">
+        <div class="modal-content">
+            <div class="flex justify-between">
+                <h2 class="text-xl mb-5">Movie Title</h2>
+                <button onclick="hideModal()">X</button>
+            </div>
+            <img width="1000" height="100" src="https://bloximages.newyork1.vip.townnews.com/newsrecord.org/content/tncms/assets/v3/editorial/8/1e/81ea500c-45ac-11ee-a11e-a7402910a7e7/64ecaae69243a.image.jpg" alt="Movie Image" class=" mb-5">
+            <div class="flex justify-between mb-5">
+                <span>Year: 2023</span>
+                <span>Length: 2h 15min</span>
+            </div>
+            <p class="mb-5">Detailed information about the movie.</p>
+            <div class="flex space-x-4 mb-5">
+                <a href="movie.html">
+                    <button class="bg-red-600 text-white p-2 px-5 rounded hover:bg-red-500">Play</button>
+                </a>
+                <button class="border border-white text-white p-2 px-5 rounded hover:bg-gray-700">Add to List</button>
+            </div>
+            <h3 class="text-lg mb-5">More like this</h3>
+            <div class="flex space-x-5 ">
+                <!-- Similar movie cards -->
+                <div class="w-40 h-64" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+                <div class="w-40 h-64" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+                <div class="w-40 h-64" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+                <div class="w-40 h-64" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+                <div class="w-40 h-64" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/4e/AFallFromGrace.png'); background-size: cover; background-position: center;"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        function showModal(element) {
+            const modal = document.getElementById('movieModal');          
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('modal-show');
+            }, 50);
+        }
+        
+        function hideModal() {
+            const modal = document.querySelector('.modal');
+            modal.classList.remove('modal-show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+        
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('movieModal')) {
+                hideModal();
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
