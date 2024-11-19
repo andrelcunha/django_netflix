@@ -92,14 +92,11 @@ def add_to_list(request):
         movie_url = request.POST.get('movie_id')
         movie_id = movie_url.split('/')[-1]
         movie = get_object_or_404(Movie, uu_id=movie_id)
-        movie_list = MovieList.objects.filter(user=request.user, movie=movie)
-        if movie_list.exists():
-            response_data = {'status':'info', 'message': 'Movie already in your list'}
-            return JsonResponse(response_data)
-        else:
-            movie_list = MovieList.objects.create(user=request.user, movie=movie)
-            movie_list.save()
+        _, created = MovieList.objects.get_or_create(user=request.user, movie=movie)
+        if created:
             response_data = {'status':'success', 'message': 'Added ✓'}
-            return JsonResponse(response_data)
+        else:
+            response_data = {'status':'info', 'message': 'Movie already in your list'}
+        return JsonResponse(response_data)
     else:
         return JsonResponse({'status':'error', 'message': 'Invalid request'}, status=400)
