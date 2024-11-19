@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Movie
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
     genre_choices = Movie.GENRE_CHOICES
     movies = Movie.objects.all()
@@ -57,3 +59,11 @@ def signup(request):
             return redirect('signup')
     else:
         return render(request, 'signup.html')
+
+@login_required(login_url='login')
+def movie(request, pk):
+    movie_details = Movie.objects.get(uu_id=pk)
+    context = {
+        'movie_details': movie_details
+    }
+    return render(request, 'movie.html', context)
