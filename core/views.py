@@ -117,3 +117,15 @@ def search(request):
         return render(request, 'search.html', context)
     else:
         return redirect('index')
+    
+@login_required(login_url='login')
+def genre(request, pk):
+    movie_genre = pk
+    genre_choices = Movie.GENRE_CHOICES
+    movies = Movie.objects.filter(genre=pk)
+    context = {
+        'genre_choices': genre_choices,
+        'movies': movies,
+        'movie_genre': movie_genre
+    }
+    return render(request, 'genre.html', context)
