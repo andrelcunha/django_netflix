@@ -78,8 +78,9 @@ def movie(request, pk):
 def my_list(request):
     genre_choices = Movie.GENRE_CHOICES
 
-    my_list = MovieList.objects.filter(user=request.user)
-    movies = Movie.objects.all().filter(uu_id__in=[list_item.movie.uu_id for list_item in my_list])
+    my_list = MovieList.objects.filter(user=request.user).order_by('id').select_related('movie')
+    movies = [list_item.movie for list_item in my_list]
+
     context = {
         'genre_choices': genre_choices,
         'movies': movies
