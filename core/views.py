@@ -10,10 +10,13 @@ from .models import Movie, MovieList
 @login_required(login_url='login')
 def index(request):
     genre_choices = Movie.GENRE_CHOICES
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('id')
+    feat_movie = movies[len(movies)-1]
+    
     context = {
         'genre_choices': genre_choices,
-        'movies': movies
+        'movies': movies,
+        'feat_movie': feat_movie
         }
     return render(request, 'index.html', context)
 
