@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Movie
+from .models import Movie, MovieList
 
 # Create your views here.
 @login_required(login_url='login')
@@ -30,6 +31,11 @@ def login(request):
             return redirect('login')
 
     return render(request, 'login.html')
+
+@login_required(login_url='login')
+def logout(request):
+    auth.logout(request)
+    return redirect('login')
 
 def signup(request):
     if request.method == 'POST':
@@ -67,3 +73,33 @@ def movie(request, pk):
         'movie_details': movie_details
     }
     return render(request, 'movie.html', context)
+
+@login_required(login_url='login')
+def my_list(request):
+    genre_choices = Movie.GENRE_CHOICES
+
+    my_list = MovieList.objects.filter(user=request.user)
+    movies = Movie.objects.all().filter(uu_id__in=[list_item.movie.uu_id for list_item in my_list])
+    context = {
+        'genre_choices': genre_choices,
+        'movies': movies
+        }
+    return render(request, 'my_list.html', context) 
+
+@login_required(login_url='login')
+def add_to_list(request):
+    if request.method == 'POST':
+        movie_url = request.POST.get('movie_id')
+        movie_id = movie_url.split('/')[-1]
+        movie = get_object_or_404(Movie, uu_id=movie_id)
+        movie_list = MovieList.objects.filter(user=request.user, movie=movie)
+        if movie_list.exists():
+            response_data = {'status':'info', 'message': 'Movie already in your list'}
+            return JsonResponse(response_data)
+        else:
+            movie_list = MovieList.objects.create(user=request.user, movie=movie)
+            movie_list.save()
+            response_data = {'status':'success', 'message': 'Added ✓'}
+            return JsonResponse(response_data)
+    else:
+        return JsonResponse({'status':'error', 'message': 'Invalid request'}, status=400)
