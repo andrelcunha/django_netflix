@@ -101,3 +101,19 @@ def add_to_list(request):
         return JsonResponse(response_data)
     else:
         return JsonResponse({'status':'error', 'message': 'Invalid request'}, status=400)
+    
+@login_required(login_url='login')
+def search(request):
+    genre_choices = Movie.GENRE_CHOICES
+
+    if request.method == 'POST':
+        search_term = request.POST.get('search_term')
+        movies = Movie.objects.filter(title__icontains=search_term)
+        context = {
+            'genre_choices': genre_choices,
+            'movies': movies,
+            'search_query': search_term
+        }
+        return render(request, 'search.html', context)
+    else:
+        return redirect('index')
